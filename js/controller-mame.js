@@ -56,7 +56,7 @@ function firstRenderMeme() {
     <section class="editor-conteiner">
         <input type="text" name="" id="" oninput="onDrawText(this.value)">
         <label for="color-line">Color:
-            <input type="color" value="#000" id="color-line" onchange="onChangeColor(this.value)">
+            <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
         </label>
         <input type="range" id="" value="30" min="10" max="50"
             onchange="this.title=this.value ,onChangeSize(this.value)">
@@ -89,9 +89,9 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
         const memLines = getLineTxt()
         console.log(memLines);
         memLines.forEach((line, id) => {
-            if (id === 0) drawText(line.txt, 150, 100)
-            if (id === 1) drawText(line.txt, 150, 400)
-            if (id === 2) drawText(line.txt, 150, 250)
+            if (id === 0) drawText(line.txt, 50, 100)
+            if (id === 1) drawText(line.txt, 50, 400)
+            if (id === 2) drawText(line.txt, 50, 250)
         })
 
     }
