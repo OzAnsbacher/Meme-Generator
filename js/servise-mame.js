@@ -3,7 +3,8 @@
 var gNumImgs = 24
 var gImgs = []
 const gKeywords = ['funny', 'bad', 'nice', 'good']
-var gMeme = { selectedImgId: 1, selectLineIdx: 1, line: [{ txt: 'boom!!', size: 20, aline: 'left', color: '' }] }
+var gMeme = { selectedImgId: 1, selectLineIdx: 1, 
+    line: [{ txt: 'boom!!', size: 20, aline: 'left', color: '' }] }
 const memesSentences = [
     'I never eat falafel',
     'DOMS DOMS EVERYWHERE',
@@ -46,9 +47,21 @@ function saveCurImg(idx) {
     gMeme.selectedImgId = idx
     gMeme.selectLineIdx = 1
     gMeme.line[0].txt = memesSentences[getRandomInt(0, memesSentences.length)]
-    gMeme.line[0].size = 35
+    gMeme.line[0].size = 30
     gMeme.line[0].color = 'white'
     gMeme.line[0].aline = 'left'
+}
+
+function changeColor(color) {
+    gMeme.line[0].color = color
+}
+
+function changeSize(size) {
+    gMeme.line[0].size=size
+}
+
+function switchLine(){
+    
 }
 
 function setLineTxt(txt) {
@@ -67,6 +80,6 @@ function getLineIdx() {
     return gMeme.selectLineIdx
 }
 
-function getImgs(){
+function getImgs() {
     return gImgs
 }

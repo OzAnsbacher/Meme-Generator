@@ -14,23 +14,28 @@ function onInit() {
 }
 
 
+// GALLERY
+function renderGallery() {
+    const imgs = getImgs()
+    var strHTML = imgs.map(img =>
+        `<img src="${img.url}" class="img-gallery"
+         onclick="onImgSelect(${img.id - 1})" alt="img">`)
+    // <img src="img/img${2}.jpg" alt="">`
+    var elGallery = document.querySelector('.grid-conteiner-gallery')
+    elGallery.innerHTML = strHTML.join('')
+}
+
+//EDITOR
+
 function renderMeme() {
     const elGallery = document.querySelector('.grid-conteiner-gallery')
     elGallery.classList.add('close-gallery')
     const elEditor = document.querySelector('.grid-conteiner-gallery')
     elEditor.classList.remove('close-editor')
-
     const img = getMeme()
     drawImgFromlocal(img.url)
 }
 
-function renderGallery() {
-    const imgs = getImgs()
-    var strHTML = imgs.map(img => `<img src="${img.url}" class="img-gallery" onclick="onImgSelect(${img.id-1})" alt="img">`)
-    // <img src="img/img${2}.jpg" alt="">`
-    var elGallery = document.querySelector('.grid-conteiner-gallery')
-    elGallery.innerHTML = strHTML.join('')
-}
 
 function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
     var img = new Image()
@@ -43,15 +48,26 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
 
 function onDrawText(txt) {
     setLineTxt(txt)
-
     renderMeme()
-
 }
 
 function onImgSelect(idx) {
     saveCurImg(idx)
     renderMeme()
-    // containGrid()
+}
+
+function onChangeColor(color) {
+    changeColor(color)
+    renderMeme()
+}
+
+function onChangeSize(size) {
+    changeSize(size)
+    renderMeme()
+}
+
+function onSwitchLine(){
+    switchLine()
 }
 
 function drawText(text, x, y) {

@@ -8,41 +8,13 @@ body {
     text-align: center;
 }
 
-.close-editor {
-    display: none;
-}
 main {
     margin: auto;
     max-width: 1060px;
     background-color: gray;
 }
 
-canvas {
-    display: block;
-    margin: 0 auto;
-    outline: 1px solid black;
-}
-
-.meme-conteiner {
-    width: 100%;
-    display: flex;
-}
-
-.canvas-container {
-
-    width: 50%;
-}
-
-.editor-conteiner{
-    width: 0%;
-}
-
-/* .grid-conteiner-editor {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-        "left, right";
-} */
+/* GALLERY */
 
 .grid-conteiner-gallery {
     background-color: darkgray;
@@ -53,16 +25,49 @@ canvas {
     column-gap: 20px;
     justify-content: center;
     align-items: center;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
-    /* Grid-auto-flow:dense; */
 }
 
 .img-gallery {
     max-height: 150px;
 }
 
-
-
 .close-gallery {
     display: none;
 }
+
+/* MEME */
+.close-editor {
+    display: none;
+}
+.meme-conteiner {
+    width: 100%;
+    display: flex;
+}
+
+/* CANVAS */
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    outline: 1px solid black;
+}
+.canvas-container {
+    width: 50%;
+}
+
+/* EDITOR */
+
+
+.editor-conteiner {
+    width: 0%;
+}
+
+
+/* .grid-conteiner-editor {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "left, right";
+} */
+
+

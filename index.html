@@ -20,15 +20,18 @@
 
             <div class="meme-conteiner close-editor">
                 <!-- CANVAS -->
-                <div class="canvas-container">
+                <section class="canvas-container">
                     <canvas class="canvas-style" height="500" width="500"></canvas>
-                </div>
+                </section>
                 <!-- EDITOR -->
-                <div class="editor-conteiner">
-                    <!-- <section class="editor-conteiner"> -->
+                <section class="editor-conteiner">
                     <input type="text" name="" id="" oninput="onDrawText(this.value)">
-                    <!-- </section> -->
-                </div>
+                    <label for="color-line">Color:
+                        <input type="color" value="#000" id="color-line" onchange="onChangeColor(this.value)">
+                    </label>
+                    <input type="range" id="" value="30" min="10" max="50" onchange="this.title=this.value ,onChangeSize(this.value)">
+                    <button class="" onclick="onSwitchLine()">add-line</button>
+                </section>
             </div>
         </div>
     </main>
