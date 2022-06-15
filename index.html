@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,21 @@
     <title>Meme</title>
     <link rel="stylesheet" href="ccs/main.css">
 </head>
-<body>
-    
+
+<body onload="onInit()">
+
     <h1>Ultimate Meme Generator</h1>
+    <div class="canvas-container">
+        <canvas class="canvas-style" height="500" width="500"></canvas>
+    </div>
 
     <section class="gallery-conteiner"></section>
     <section class="editor-conteiner"></section>
 
 
-<script src="js/controller-mame.js"></script>
-<script src="js/servise-mame.js"></script>
+    <script src="js/controller-mame.js"></script>
+    <script src="js/servise-mame.js"></script>
+    <script src="js/utils.js"></script>
 </body>
+
 </html>
