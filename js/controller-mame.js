@@ -3,18 +3,33 @@
 var gCanvas
 var gCtx
 
+
 function onInit() {
     gImgs = []
-    creatImgs()
     gCanvas = document.querySelector('.canvas-style')
     gCtx = gCanvas.getContext('2d')
-    renderMeme()
+    creatImgs()
+    // renderMeme()
+    renderGallery()
 }
 
+
 function renderMeme() {
+    const elGallery = document.querySelector('.grid-conteiner-gallery')
+    elGallery.classList.add('close-gallery')
+    const elEditor = document.querySelector('.grid-conteiner-gallery')
+    elEditor.classList.remove('close-editor')
+
     const img = getMeme()
     drawImgFromlocal(img.url)
+}
 
+function renderGallery() {
+    const imgs = getImgs()
+    var strHTML = imgs.map(img => `<img src="${img.url}" class="img-gallery" onclick="onImgSelect(${img.id-1})" alt="img">`)
+    // <img src="img/img${2}.jpg" alt="">`
+    var elGallery = document.querySelector('.grid-conteiner-gallery')
+    elGallery.innerHTML = strHTML.join('')
 }
 
 function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
@@ -22,11 +37,25 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
     img.src = imgSrc
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
-        drawText('boom', 150, 100)
+        drawText(getLineTxt(), 150, 100)
     }
 }
 
+function onDrawText(txt) {
+    setLineTxt(txt)
+
+    renderMeme()
+
+}
+
+function onImgSelect(idx) {
+    saveCurImg(idx)
+    renderMeme()
+    // containGrid()
+}
+
 function drawText(text, x, y) {
+    gCtx.beginPath()
     const txtStyle = getStyle()
     gCtx.lineWidth = txtStyle.bold
     gCtx.strokeStyle = txtStyle.stoke
@@ -37,10 +66,11 @@ function drawText(text, x, y) {
 }
 
 function getStyle() {
+    const memeStyle = getStyleServise()
     return {
-        font: '40px Arial',
-        fill: 'black',
-        stoke: 'brown',
+        font: `${memeStyle.size}px Impact`,
+        fill: memeStyle.color,
+        stoke: 'black',
         bold: 3
     }
 }

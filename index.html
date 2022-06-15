@@ -10,14 +10,29 @@
 </head>
 
 <body onload="onInit()">
+    <header>
+        <h1>Ultimate Meme Generator</h1>
+    </header>
+    <main>
+        <div class="main-conteiner">
+            <!-- GALLERY -->
+            <section class="gallery-conteiner grid-conteiner-gallery"></section>
 
-    <h1>Ultimate Meme Generator</h1>
-    <div class="canvas-container">
-        <canvas class="canvas-style" height="500" width="500"></canvas>
-    </div>
+            <div class="meme-conteiner close-editor">
+                <!-- CANVAS -->
+                <div class="canvas-container">
+                    <canvas class="canvas-style" height="500" width="500"></canvas>
+                </div>
+                <!-- EDITOR -->
+                <div class="editor-conteiner">
+                    <!-- <section class="editor-conteiner"> -->
+                    <input type="text" name="" id="" oninput="onDrawText(this.value)">
+                    <!-- </section> -->
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <section class="gallery-conteiner"></section>
-    <section class="editor-conteiner"></section>
 
 
     <script src="js/controller-mame.js"></script>

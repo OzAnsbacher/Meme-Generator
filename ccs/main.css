@@ -1,12 +1,68 @@
-body{
+* {
+    box-sizing: border-box;
+}
+
+
+body {
     margin: 0;
-    background-color: gray;
     text-align: center;
 }
 
-canvas{
+.close-editor {
+    display: none;
+}
+main {
+    margin: auto;
+    max-width: 1060px;
+    background-color: gray;
+}
+
+canvas {
     display: block;
     margin: 0 auto;
     outline: 1px solid black;
-    
+}
+
+.meme-conteiner {
+    width: 100%;
+    display: flex;
+}
+
+.canvas-container {
+
+    width: 50%;
+}
+
+.editor-conteiner{
+    width: 0%;
+}
+
+/* .grid-conteiner-editor {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "left, right";
+} */
+
+.grid-conteiner-gallery {
+    background-color: darkgray;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 220px);
+    gap: 12px;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    /* Grid-auto-flow:dense; */
+}
+
+.img-gallery {
+    max-height: 150px;
+}
+
+
+
+.close-gallery {
+    display: none;
 }
