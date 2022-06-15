@@ -7,11 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme</title>
     <link rel="stylesheet" href="ccs/main.css">
+    <link rel="stylesheet" href="ccs/helper.css">
 </head>
 
 <body onload="onInit()">
-    <header>
-        <h1>Ultimate Meme Generator</h1>
+    <header class="header-conteiner flex">
+        <h1>LOGO</h1>
+        <a href="#">Gallery</a>
+        <a href="#">About</a>
     </header>
     <main>
         <div class="main-conteiner">
@@ -29,8 +32,10 @@
                     <label for="color-line">Color:
                         <input type="color" value="#000" id="color-line" onchange="onChangeColor(this.value)">
                     </label>
-                    <input type="range" id="" value="30" min="10" max="50" onchange="this.title=this.value ,onChangeSize(this.value)">
-                    <button class="" onclick="onSwitchLine()">add-line</button>
+                    <input type="range" id="" value="30" min="10" max="50"
+                        onchange="this.title=this.value ,onChangeSize(this.value)">
+                    <button class="" onclick="onAddLine()">add-line</button>
+                    <button class="" onclick="onSwitchLine()">switch-line</button>
                 </section>
             </div>
         </div>

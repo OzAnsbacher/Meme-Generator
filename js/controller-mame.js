@@ -42,7 +42,14 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
     img.src = imgSrc
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
-        drawText(getLineTxt(), 150, 100)
+        const memLines = getLineTxt()
+        console.log(memLines);
+        memLines.forEach((line, id) => {
+            if (id === 0) drawText(line.txt, 150, 100)
+            if (id === 1) drawText(line.txt, 150, 400)
+            if (id === 2) drawText(line.txt, 150, 250)
+        })
+
     }
 }
 
@@ -68,6 +75,15 @@ function onChangeSize(size) {
 
 function onSwitchLine(){
     switchLine()
+}
+
+function onAddLine() {
+    const msg = addLine()
+    if (msg){
+     console.log(msg)
+     return
+    }
+    renderMeme()
 }
 
 function drawText(text, x, y) {

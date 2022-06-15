@@ -3,8 +3,10 @@
 var gNumImgs = 24
 var gImgs = []
 const gKeywords = ['funny', 'bad', 'nice', 'good']
-var gMeme = { selectedImgId: 1, selectLineIdx: 1, 
-    line: [{ txt: 'boom!!', size: 20, aline: 'left', color: '' }] }
+var gMeme = {
+    selectedImgId: 1, selectLineIdx: 1,
+    line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '' }]
+}
 const memesSentences = [
     'I never eat falafel',
     'DOMS DOMS EVERYWHERE',
@@ -46,10 +48,20 @@ function getMeme() {
 function saveCurImg(idx) {
     gMeme.selectedImgId = idx
     gMeme.selectLineIdx = 1
-    gMeme.line[0].txt = memesSentences[getRandomInt(0, memesSentences.length)]
-    gMeme.line[0].size = 30
-    gMeme.line[0].color = 'white'
-    gMeme.line[0].aline = 'left'
+    gMeme.line[0] = getNewLine()
+    // gMeme.line[0].txt = memesSentences[getRandomInt(0, memesSentences.length)]
+    // gMeme.line[0].size = 30
+    // gMeme.line[0].color = 'white'
+    // gMeme.line[0].aline = 'left'
+}
+
+function getNewLine() {
+    return {
+        txt: memesSentences[getRandomInt(0, memesSentences.length)],
+        size: 30,
+        aline: 'left',
+        color: 'white'
+    }
 }
 
 function changeColor(color) {
@@ -57,19 +69,29 @@ function changeColor(color) {
 }
 
 function changeSize(size) {
-    gMeme.line[0].size=size
+    gMeme.line[0].size = size
 }
 
-function switchLine(){
-    
+function addLine() {
+    if (gMeme.line.length < 3) {
+        gMeme.line.push(getNewLine())
+        switchLine()
+        return ''
+    }
+    return 'There is not enough space'
+}
+
+function switchLine() {
+        gMeme.selectLineIdx++
+        if(gMeme.selectLineIdx>3) gMeme.selectLineIdx=1
 }
 
 function setLineTxt(txt) {
-    gMeme.line[0].txt = txt
+    gMeme.line[gMeme.selectLineIdx - 1].txt = txt
 }
 
 function getLineTxt() {
-    return gMeme.line[0].txt
+    return gMeme.line
 }
 
 function getStyleServise() {
