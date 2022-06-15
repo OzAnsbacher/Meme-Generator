@@ -8,39 +8,51 @@
     <title>Meme</title>
     <link rel="stylesheet" href="ccs/main.css">
     <link rel="stylesheet" href="ccs/helper.css">
+    <link rel="stylesheet" href="ccs/setup/typography.css">
+    <link rel="stylesheet" href="ccs/setup/vars.css">
 </head>
 
 <body onload="onInit()">
-    <header class="header-conteiner flex">
-        <h1>LOGO</h1>
-        <a href="#">Gallery</a>
-        <a href="#">About</a>
-    </header>
-    <main>
-        <div class="main-conteiner">
-            <!-- GALLERY -->
-            <section class="gallery-conteiner grid-conteiner-gallery"></section>
-
-            <div class="meme-conteiner close-editor">
-                <!-- CANVAS -->
-                <section class="canvas-container">
-                    <canvas class="canvas-style" height="500" width="500"></canvas>
-                </section>
-                <!-- EDITOR -->
-                <section class="editor-conteiner">
-                    <input type="text" name="" id="" oninput="onDrawText(this.value)">
-                    <label for="color-line">Color:
-                        <input type="color" value="#000" id="color-line" onchange="onChangeColor(this.value)">
-                    </label>
-                    <input type="range" id="" value="30" min="10" max="50"
-                        onchange="this.title=this.value ,onChangeSize(this.value)">
-                    <button class="" onclick="onAddLine()">add-line</button>
-                    <button class="" onclick="onSwitchLine()">switch-line</button>
-                </section>
+    <div class="body-conteiner">
+        <header>
+            <div class="header-conteiner flex align-center space-between">
+                <h1>LOGO</h1>
+                <div class="btn-header flex">
+                    <button class="btn-header btn-push none-dacoration" onclick="renderGallery('Gallery')">Gallery</button>
+                    <button class="btn-header none-dacoration">Editor</button>
+                    <button class="btn-header none-dacoration">About</button>
+                </div>
             </div>
-        </div>
-    </main>
+        </header>
+        <main>
+            <div class="main-conteiner">
 
+                <!-- GALLERY -->
+                <!-- <div class="gallery-conteiner">
+                    <input type="text" name="" class="search-key" id="" placeholder="Search"></input>
+                    <section class="grid-conteiner-gallery"></section>
+
+                </div> -->
+                <!-- <div class="meme-conteiner close-editor"> -->
+                    <!-- CANVAS -->
+                    <!-- <section class="canvas-container">
+                        <canvas class="canvas-style" height="500" width="500"></canvas>
+                    </section> -->
+                    <!-- EDITOR -->
+                    <!-- <section class="editor-conteiner">
+                        <input type="text" name="" id="" oninput="onDrawText(this.value)">
+                        <label for="color-line">Color:
+                            <input type="color" value="#000" id="color-line" onchange="onChangeColor(this.value)">
+                        </label>
+                        <input type="range" id="" value="30" min="10" max="50"
+                            onchange="this.title=this.value ,onChangeSize(this.value)">
+                        <button class="" onclick="onAddLine()">add-line</button>
+                        <button class="" onclick="onSwitchLine()">switch-line</button>
+                    </section>
+                </div> -->
+            </div>
+        </main>
+    </div>
 
 
     <script src="js/controller-mame.js"></script>

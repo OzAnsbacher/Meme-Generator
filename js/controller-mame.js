@@ -6,11 +6,20 @@ var gCtx
 
 function onInit() {
     gImgs = []
-    gCanvas = document.querySelector('.canvas-style')
-    gCtx = gCanvas.getContext('2d')
+    // gCanvas = document.querySelector('.canvas-style')
+    // gCtx = gCanvas.getContext('2d')
     creatImgs()
     // renderMeme()
     renderGallery()
+}
+
+
+function changeHeaterBtn(btnTxt='Editor') {
+    let elbtn = document.querySelectorAll('button.btn-header')
+    elbtn.forEach(btn => {
+        btn.classList.remove('btn-push')
+        if (btn.innerText === btnTxt) btn.classList.add('btn-push')
+    })
 }
 
 
@@ -20,18 +29,53 @@ function renderGallery() {
     var strHTML = imgs.map(img =>
         `<img src="${img.url}" class="img-gallery"
          onclick="onImgSelect(${img.id - 1})" alt="img">`)
-    // <img src="img/img${2}.jpg" alt="">`
-    var elGallery = document.querySelector('.grid-conteiner-gallery')
+
+    strHTML.unshift(`<div class="gallery-conteiner" >
+         <input type="text" name="" class="search-key" id="" placeholder="Search"></input>
+         <section class="grid-conteiner-gallery">`)
+    strHTML.push(`</section></div>`)
+    console.log(strHTML);
+    var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML.join('')
+    changeHeaterBtn('Gallery')
 }
+
+
 
 //EDITOR
 
+function firstRenderMeme() {
+    changeHeaterBtn()
+
+    const strHTML = ` <div class="meme-conteiner">
+    <!-- CANVAS -->
+    <section class="canvas-container">
+        <canvas class="canvas-style" height="500" width="500"></canvas>
+    </section>
+    <!-- EDITOR -->
+    <section class="editor-conteiner">
+        <input type="text" name="" id="" oninput="onDrawText(this.value)">
+        <label for="color-line">Color:
+            <input type="color" value="#000" id="color-line" onchange="onChangeColor(this.value)">
+        </label>
+        <input type="range" id="" value="30" min="10" max="50"
+            onchange="this.title=this.value ,onChangeSize(this.value)">
+        <button class="" onclick="onAddLine()">add-line</button>
+        <button class="" onclick="onSwitchLine()">switch-line</button>
+    </section>
+</div>`
+
+    var elGallery = document.querySelector('.main-conteiner')
+    elGallery.innerHTML = strHTML
+    gCanvas = document.querySelector('.canvas-style')
+    gCtx = gCanvas.getContext('2d')
+
+    const img = getMeme()
+    drawImgFromlocal(img.url)
+}
+
+
 function renderMeme() {
-    const elGallery = document.querySelector('.grid-conteiner-gallery')
-    elGallery.classList.add('close-gallery')
-    const elEditor = document.querySelector('.grid-conteiner-gallery')
-    elEditor.classList.remove('close-editor')
     const img = getMeme()
     drawImgFromlocal(img.url)
 }
@@ -60,7 +104,8 @@ function onDrawText(txt) {
 
 function onImgSelect(idx) {
     saveCurImg(idx)
-    renderMeme()
+    console.log(1111);
+    firstRenderMeme()
 }
 
 function onChangeColor(color) {
@@ -73,15 +118,15 @@ function onChangeSize(size) {
     renderMeme()
 }
 
-function onSwitchLine(){
+function onSwitchLine() {
     switchLine()
 }
 
 function onAddLine() {
     const msg = addLine()
-    if (msg){
-     console.log(msg)
-     return
+    if (msg) {
+        console.log(msg)
+        return
     }
     renderMeme()
 }
