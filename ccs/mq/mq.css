@@ -30,11 +30,11 @@
         display: grid;
         grid-template-columns: 25%, 25%, 25%, 25%;
         grid-template-areas:
-            "txt txt txt txt "
-            "random pen switch delete"
-            "ltr plus minus rtl"
-            "share range select download"
-            "color-user color-user save save";
+        "txt txt txt txt "
+        "random pen switch delete"
+        "color-user plus minus save"
+        "share range select download"
+        "imj1 imj2 imj3 imj4";
 
 
         /* max-width: 650px; */
@@ -102,7 +102,8 @@
                 "txt txt "
                 "pen switch"
                 "random delete"
-                "ltr rtl"
+                "imj1 imj2"
+                "imj4 imj3"
                 "plus minus"
                 "share download"
                 "range select"
@@ -167,9 +168,10 @@
         grid-template-areas:
             "txt txt txt txt "
             "random pen switch delete"
-            "ltr plus minus rtl"
+            "color-user plus minus save"
             "share range select download"
-            "color-user color-user save save";
+            "imj1 imj2 imj3 imj4";
+           
 
 
         width: 45%;

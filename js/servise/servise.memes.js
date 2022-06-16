@@ -72,7 +72,7 @@ function getNewLine(isRandom) {
     let stoke = '#000000'
     if (isRandom) {
         txt = memesSentences[getRandomInt(0, memesSentences.length)]
-        size = getRandomInt(20, 51)
+        size = getRandomInt(20, 40)
         color = getRandomColor()
         stoke = checkDarkColor(color)
         isRandom = false
@@ -96,7 +96,7 @@ function getStyle() {
 }
 
 function changeFontSize(size) {
-    if (gMeme.line[gMeme.selectLineIdx].size > 46) return
+    if (gMeme.line[gMeme.selectLineIdx].size > 40) return
     if (gMeme.line[gMeme.selectLineIdx].size < 20) return
     gMeme.line[gMeme.selectLineIdx].size += size
 }
@@ -145,8 +145,15 @@ function switchLine() {
 function setLineTxt(text) {
     if (gMeme.line[gMeme.selectLineIdx].size * text.lastIndexOf('') < gCanvas.width * 1.5) {
         gMeme.line[gMeme.selectLineIdx].txt = text
+        clearInput(undefined, gMeme.line[gMeme.selectLineIdx].txt)
         return ''
     } else return 'Open new row'
+}
+function addIcon(icon) {
+    // if (gMeme.line[gMeme.selectLineIdx].size * gMeme.line[gMeme.selectLineIdx].txt.lastIndexOf('') < gCanvas.width * 1.5) {
+    gMeme.line[gMeme.selectLineIdx].txt += icon
+    clearInput(undefined, gMeme.line[gMeme.selectLineIdx].txt)
+    // }
 }
 
 function getLineTxt() {

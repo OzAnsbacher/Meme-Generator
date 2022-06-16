@@ -59,7 +59,7 @@ function firstRenderMeme() {
         <img src="icon/switch.png" class="icon switch" onclick="onSwitchLine()" alt="">
         <img src="icon/delete.png" class="icon delete"  onclick="renderGallery()" name="delete-text" alt="">
         <button class="share">Share</button>
-        <input type="range" id="" value="30" min="20" max="50" onchange="this.title=this.value ,onChangeSize(this.value)">
+        <input type="range" id="" value="30" min="20" max="45" onchange="this.title=this.value ,onChangeSize(this.value)">
         <select onchange="onGetFont(this.value)" name="" id="">
         <option value="Impact" >Impact</option>
         <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
@@ -67,12 +67,14 @@ function firstRenderMeme() {
         <option value="FascinateInline">FascinateInline</option>
         </select>
         <button class="download">Download</button>
+        <img src="icon/save.png" class="icon save" onclick="onSaveToStorage()" alt="">
         <img src="icon/plus.png" class="icon plus" onclick="onChangeFontSize(3)" name="plus-font-size" alt="">
         <img src="icon/reduce2.png" class="icon minus" onclick="onChangeFontSize(-3)" name="minus-font-size" alt="">
-        <img src="icon/ltr.png" class="icon" name="ltr" alt="">
-        <img src="icon/ltr.png" class="icon" name="rtl" alt="">
-        <img src="icon/save.png" class="icon save" onclick="onSaveToStorage()" alt="">
         <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
+        <button  class="icon imj1" onclick="onAddIcon('🤬')">🤬</button>
+        <button class="icon imj2" onclick="onAddIcon('😎')">😎</button>
+        <button class="icon imj3" onclick="onAddIcon('🐰')">🐰</button>
+        <button class="icon imj4" onclick="onAddIcon('🤣')">🤣</button>
     </section>
 </div>`
 
@@ -145,6 +147,12 @@ function onDrawText(txt) {
     renderMeme()
 }
 
+function onAddIcon(icon){
+    console.log(icon);
+    addIcon(icon)
+    renderMeme()
+}
+
 function onImgSelect(idx = getRandomInt(0, gImgs.length), isRandom = false) {
     saveCurImg(idx, isRandom)
     firstRenderMeme()
@@ -190,8 +198,8 @@ function onAddLine() {
     renderMeme()
 }
 
-function clearInput(selector = '.txt-meme') {
-    document.querySelector(`${selector}`).value = ''
+function clearInput(selector = '.txt-meme', val='') {
+    document.querySelector(`${selector}`).value = val
 }
 
 function drawText(text, x, y) {

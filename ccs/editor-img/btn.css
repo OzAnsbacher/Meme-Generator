@@ -43,13 +43,17 @@
     width: 40px;
 }
 
-[name="rtl"] {
-    transform: rotateY(180deg);
-    grid-area: rtl;
+.imj1 {
+    grid-area: imj1;
 }
-
-[name="ltr"] {
-    grid-area: ltr;
+.imj2 {
+    grid-area: imj2;
+}
+.imj3 {
+    grid-area: imj3;
+}
+.imj4 {
+    grid-area: imj4;
 }
 
 .icon.save {
