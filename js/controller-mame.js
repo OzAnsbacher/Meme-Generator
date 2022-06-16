@@ -13,7 +13,7 @@ function onInit() {
 }
 
 
-function changeHeaterBtn(btnTxt = 'Editor') {
+function changeHeaderBtn(btnTxt = 'Editor') {
     let elbtn = document.querySelectorAll('button.btn-header')
     elbtn.forEach(btn => {
         btn.classList.remove('btn-push')
@@ -24,28 +24,24 @@ function changeHeaterBtn(btnTxt = 'Editor') {
 
 // GALLERY
 function renderGallery() {
-    const imgs = getImgs()
-    var strHTML = imgs.map(img =>
+    var imgs = getImgs()
+    var strHTML = imgs.map((img) =>
         `<img src="${img.url}" class="img-gallery"
-         onclick="onImgSelect(${img.id - 1})" alt="img">`)
+            onclick="onImgSelect(${img.id - 1})" alt="img">`)
 
     strHTML.unshift(`<div class="gallery-conteiner" >
-         <input type="search" name="" class="search-key" id="" placeholder="Search"></input>
-         <section class="grid-conteiner-gallery">`)
+            <input type="search" name="" class="search-key" id="" placeholder="Search"></input>
+            <section class="grid-conteiner-gallery">`)
     strHTML.push(`</section></div>`)
     var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML.join('')
-    changeHeaterBtn('Gallery')
+    changeHeaderBtn('Gallery')
 }
 
 
-function onRandomImg() {
-
-}
-
-
+//EDITOR
 function firstRenderMeme() {
-    changeHeaterBtn()
+    changeHeaderBtn()
 
     const strHTML =
         `<div class="meme-conteiner">
@@ -73,10 +69,10 @@ function firstRenderMeme() {
         <img src="icon/reduce2.png" class="icon minus" name="minus-font-size" alt="">
         <img src="icon/ltr.png" class="icon" name="ltr" alt="">
         <img src="icon/ltr.png" class="icon" name="rtl" alt="">
+        <img src="icon/save.png" class="save" onclick="onSaveToStorage()" alt="">
         <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
     </section>
 </div>`
-
 
     var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML
@@ -113,15 +109,31 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
             if (id === 2) {
                 drawText(line.txt, 40, gCanvas.height - 150)
             }
-            // changeLineIdx(id)
         })
 
     }
 }
 
+function renderSaveImg() {
+    let imgs = _loadFromStorage()
+    imgs = imgs.split('data')
+    let strHTML = imgs.map((img, id) => {
+        if (!id) return
+        return `<img src="data${img}" class="img-gallery"/>`
+    })
+    strHTML.unshift(`<div class="gallery-conteiner" >
+            <input type="search" name="" class="search-key" id="" placeholder="Search"></input>
+            <section class="grid-conteiner-gallery">`)
+    strHTML.push(`</section></div>`)
+    var elGallery = document.querySelector('.main-conteiner')
+    elGallery.innerHTML = strHTML
+    console.log(imgs);
+    changeHeaderBtn('Save')
+}
+
 function onDrawText(txt) {
-   const msg= setLineTxt(txt)
-   if (msg) console.log(msg);
+    const msg = setLineTxt(txt)
+    if (msg) console.log(msg);
     renderMeme()
 }
 
@@ -151,6 +163,10 @@ function onGetFont(font) {
     // renderMeme()
 }
 
+function onSaveToStorage() {
+    _saveToStorage()
+}
+
 function onAddLine() {
     clearInput()
     const msg = addLine()
@@ -161,8 +177,8 @@ function onAddLine() {
     renderMeme()
 }
 
-function clearInput(selector='.txt-meme'){
-document.querySelector(`${selector}`).value=''
+function clearInput(selector = '.txt-meme') {
+    document.querySelector(`${selector}`).value = ''
 }
 
 function drawText(text, x, y) {

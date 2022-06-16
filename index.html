@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme</title>
     <link rel="stylesheet" href="ccs/main.gallery.css">
-    <link rel="stylesheet" href="ccs/main.editor-img.css">
+    <link rel="stylesheet" href="ccs/editor-img/main.css">
+    <link rel="stylesheet" href="ccs/editor-img/btn.css">
     <link rel="stylesheet" href="ccs/header.css">
     <link rel="stylesheet" href="ccs/helper.css">
     <link rel="stylesheet" href="ccs/setup/typography.css">
@@ -21,9 +22,10 @@
                 <h1>LOGO</h1>
                 <div class="btn-header flex">
                     <button class="btn-header btn-push none-dacoration"
-                        onclick="renderGallery('Gallery')">Gallery</button>
+                        onclick="renderGallery()">Gallery</button>
                     <button class="btn-header none-dacoration">Editor</button>
                     <button class="btn-header none-dacoration" onclick="onImgSelect( undefined , true)">Random</button>
+                    <button class="btn-header none-dacoration" onclick="renderSaveImg()">Save</button>
                 </div>
             </div>
         </header>
@@ -32,10 +34,10 @@
             </div>
         </main>
     </div>
-
-  
+   
     <script src="js/controller-mame.js"></script>
-    <script src="js/servise-mame.js"></script>
+    <script src="js/servise/mame.js"></script>
+    <script src="js/servise/storage.js"></script>
     <script src="js/utils.js"></script>
 </body>
 

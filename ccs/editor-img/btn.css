@@ -1,42 +1,3 @@
-/* CANVAS */
-
-canvas {
-    display: block;
-    margin: 0 auto;
-    border-radius: 35px;
-}
-
-.canvas-container {
-    padding: 12px;
-    margin: 10px;
-    border-radius: 35px;
-    background-color: var(--clr4);
-}
-
-/* EDITOR */
-
-.grid-conteiner-editor {
-    display: grid;
-    display: inline-grid;
-    justify-items: center;
-    background-color: var(--clr4);
-    margin: 57px;
-    grid-template-columns: 25%, 25%, 25%, 25%;
-    grid-template-areas:
-        "txt txt txt txt "
-        "random pen switch delete"
-        "ltr plus minus rtl"
-        "share range select download"
-        ". color-user color-user .";
-
-    background-color: var(--clr4);
-    border-radius: 35px;
-    gap: 5px;
-    width: 45%;
-    padding: 1em;
-    align-items: baseline;
-}
-
 
 
 .txt-meme {
@@ -93,6 +54,11 @@ canvas {
     grid-area: ltr;
 }
 
+.save{
+    height: 60px;
+    width: 60px;
+    grid-area: save;
+}
 
 input[type="color"] {
     appearance: none;
@@ -101,9 +67,9 @@ input[type="color"] {
     background: none;
     border: 0;
     cursor: pointer;
-    height: 5em;
+    height: 45px;
     padding: 0;
-    width: 5em;
+    width:45px;
     grid-area: color-user;
 }
 

@@ -2,6 +2,7 @@
 
 //to fix switch line btn
 
+const KEY = 'memes'
 var gFont
 var gNumImgs = 24
 var gImgs = []
@@ -70,7 +71,7 @@ function getNewLine(isRandom) {
         size = getRandomInt(20, 51)
         color = getRandomColor()
         stoke = chackIsDarkColor(color)
-        isRandom=false
+        isRandom = false
     }
     return {
         txt: txt,
@@ -88,6 +89,16 @@ function getStyle() {
         stoke: memeStyle.stoke,
         bold: 3
     }
+}
+
+function _saveToStorage() {
+    var img = gCanvas.toDataURL('image/jpeg')
+    img += _loadFromStorage()
+    saveToStorage(KEY, img)
+}
+
+function _loadFromStorage() {
+    return loadFromStorage(KEY)
 }
 
 function getFont(font) {
@@ -121,7 +132,7 @@ function switchLine() {
 }
 
 function setLineTxt(text) {
-    if (gMeme.line[gMeme.selectLineIdx].size * text.lastIndexOf('') < gCanvas.width*1.5) {
+    if (gMeme.line[gMeme.selectLineIdx].size * text.lastIndexOf('') < gCanvas.width * 1.5) {
         gMeme.line[gMeme.selectLineIdx].txt = text
         return ''
     } else return 'Open new row'
