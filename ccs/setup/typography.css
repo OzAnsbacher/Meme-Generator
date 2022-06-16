@@ -1,4 +1,17 @@
 @font-face {
-    font-family: Quicksand-Regular;
+    font-family: Quicksand;
     src: url("../../font/Quicksand-Regular.ttf");
 }
+@font-face {
+    font-family: Fascinate;
+    src: url("../../font/Fascinate-Regular.ttf");
+}
+@font-face {
+    font-family: FascinateInline;
+    src: url("../../font/FascinateInline-Regular.ttf");
+}
+@font-face {
+    font-family: Lobster;
+    src: url("../../font/Lobster-Regular.ttf");
+}
+

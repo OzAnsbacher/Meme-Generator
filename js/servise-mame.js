@@ -2,11 +2,12 @@
 
 //to fix switch line btn
 
+var gFont
 var gNumImgs = 24
 var gImgs = []
 const gKeywords = ['funny', 'bad', 'nice', 'good']
 var gMeme = {
-    selectedImgId: 1, selectLineIdx: 1,
+    selectedImgId: 1, selectLineIdx: 0,
     line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '' }]
 }
 const memesSentences = [
@@ -56,8 +57,7 @@ function saveCurImg(idx, isRandom) {
         }
     }
     gMeme.selectedImgId = idx
-    gMeme.selectLineIdx = 1
-    console.log(gMeme);
+    gMeme.selectLineIdx = 0
 }
 
 function getNewLine(isRandom) {
@@ -81,19 +81,28 @@ function getStyle() {
     const memeStyle = getStyleServise()
     const color = chackIsDarkColor(memeStyle.color)
     return {
-        font: `${memeStyle.size}px Impact`,
+        font: `${memeStyle.size}px ${setFont()}`,
         fill: memeStyle.color,
         stoke: color,
         bold: 3
     }
 }
 
+function getFont(font) {
+    console.log(111);
+    gFont = font
+}
+
+function setFont() {
+    return gFont
+}
+
 function changeColor(color) {
-    gMeme.line[0].color = color
+    gMeme.line[gMeme.selectLineIdx].color = color
 }
 
 function changeSize(size) {
-    gMeme.line[0].size = size
+    gMeme.line[gMeme.selectLineIdx].size = size
 }
 
 function addLine() {
@@ -107,7 +116,7 @@ function addLine() {
 
 function switchLine() {
     gMeme.selectLineIdx++
-    if(gMeme.selectLineIdx++>gMeme.line.length)gMeme.selectLineIdx=1
+    if (gMeme.selectLineIdx >= gMeme.line.length) gMeme.selectLineIdx = 0
 
     // if (gMeme.line.length !== gMeme.selectLineIdx) gMeme.selectLineIdx++
     // else if (gMeme.line.length === gMeme.selectLineIdx) gMeme.selectLineIdx=1

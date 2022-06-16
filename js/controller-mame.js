@@ -7,6 +7,7 @@ var gCtx
 function onInit() {
     gImgs = []
     creatImgs()
+    gFont = 'Impact'
     // firstRenderMeme()
     renderGallery()
 }
@@ -29,7 +30,7 @@ function renderGallery() {
          onclick="onImgSelect(${img.id - 1})" alt="img">`)
 
     strHTML.unshift(`<div class="gallery-conteiner" >
-         <input type="text" name="" class="search-key" id="" placeholder="Search"></input>
+         <input type="search" name="" class="search-key" id="" placeholder="Search"></input>
          <section class="grid-conteiner-gallery">`)
     strHTML.push(`</section></div>`)
     var elGallery = document.querySelector('.main-conteiner')
@@ -42,18 +43,12 @@ function onRandomImg() {
 
 }
 
-// //EDITOR
-// <button onclick="onAddLine()">add-line</button>
-//         <button onclick="onSwitchLine()">switch-line</button>
-
-/* <label class-"label-color" for="color-line">Color: */
-// </label>
 
 function firstRenderMeme() {
     changeHeaterBtn()
 
-    const strHTML = 
-`<div class="meme-conteiner">
+    const strHTML =
+        `<div class="meme-conteiner">
  <!-- CANVAS -->
     <section class="canvas-container">
         <canvas class="canvas-style" width="500"></canvas>
@@ -63,22 +58,25 @@ function firstRenderMeme() {
         <input type="text" name="txt" class="txt-meme" oninput="onDrawText(this.value)">
         <img src="icon/pen.png" class="icon pen" onclick="onAddLine(event)" alt="">
         <img src="icon/color.png" class="icon" name="random-color" alt="">
-        <img src="icon/switch.png" class="icon switch" onclick="onSwitchLine(event)" alt="">
+        <img src="icon/switch.png" class="icon switch" onclick="onSwitchLine()" alt="">
         <img src="icon/delete.png" class="icon delete" name="delete-text" alt="">
-        
-            <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
-        
+        <button class="share">Share</button>
         <input type="range" id="" value="30" min="20" max="50" onchange="this.title=this.value ,onChangeSize(this.value)">
+        <select onchange="onGetFont(this.value)" name="" id="">
+        <option value="Impact" >Impact</option>
+        <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+        <option value=" Arial"> Arial</option>
+        <option value="FascinateInline">FascinateInline</option>
+        </select>
+        <button class="download">Download</button>
         <img src="icon/plus.png" class="icon plus" name="plus-font-size" alt="">
         <img src="icon/reduce2.png" class="icon minus" name="minus-font-size" alt="">
         <img src="icon/ltr.png" class="icon" name="ltr" alt="">
         <img src="icon/ltr.png" class="icon" name="rtl" alt="">
-        <button class="share">Share</button>
-        <div class="font"></div>
-        <button class="download">Download</button>
+        <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
     </section>
 </div>`
-        
+
 
     var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML
@@ -105,17 +103,17 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
         const memLines = getLineTxt()
         memLines.forEach((line, id) => {
             if (id === 0) {
-                changeLineIdx(id)
-                drawText(line.txt, 50, 50)
+                // changeLineIdx(id)
+                drawText(line.txt, 40, 40)
             }
             if (id === 1) {
-                changeLineIdx(id)
-                drawText(line.txt, 50, 350)
+                // changeLineIdx(id)
+                drawText(line.txt, 50, gCanvas.height - 50)
             }
             if (id === 2) {
-                changeLineIdx(id)
-                drawText(line.txt, 50, 290)
+                drawText(line.txt, 50, gCanvas.height - 150)
             }
+            // changeLineIdx(id)
         })
 
     }
@@ -143,6 +141,12 @@ function onChangeSize(size) {
 
 function onSwitchLine() {
     switchLine()
+}
+
+function onGetFont(font) {
+    console.log(font);
+    getFont(font)
+    // renderMeme()
 }
 
 function onAddLine() {

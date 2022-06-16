@@ -1,0 +1,156 @@
+/* CANVAS */
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 35px;
+}
+
+.canvas-container {
+    padding: 12px;
+    margin: 10px;
+    border-radius: 35px;
+    background-color: var(--clr4);
+}
+
+/* EDITOR */
+
+.grid-conteiner-editor {
+    display: grid;
+    display: inline-grid;
+    justify-items: center;
+    background-color: var(--clr4);
+    margin: 57px;
+    grid-template-columns: 25%, 25%, 25%, 25%;
+    grid-template-areas:
+        "txt txt txt txt "
+        "random pen switch delete"
+        "ltr plus minus rtl"
+        "share range select download"
+        ". color-user color-user .";
+
+    background-color: var(--clr4);
+    border-radius: 35px;
+    gap: 5px;
+    width: 45%;
+    padding: 1em;
+    align-items: baseline;
+}
+
+
+
+.txt-meme {
+    /* display: block; */
+    grid-area: txt;
+    color: var(--clr1);
+    height: 3em;
+    width: 30em;
+    margin: auto;
+    background-color: var(--clr5);
+    border-radius: 20px;
+    margin-bottom: 25px;
+}
+
+.pen {
+    grid-area: pen;
+    height: 70px;
+    width: 70px;
+}
+
+.switch {
+    grid-area: switch;
+    height: 70px;
+    width: 70px;
+}
+
+.delete {
+    grid-area: delete;
+}
+
+[name="random-color"] {
+    grid-area: random;
+}
+
+.plus {
+    grid-area: plus;
+}
+
+.minus {
+    grid-area: minus;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+[name="rtl"] {
+    transform: rotateY(180deg);
+    grid-area: rtl;
+}
+
+[name="ltr"] {
+    grid-area: ltr;
+}
+
+
+input[type="color"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    height: 5em;
+    padding: 0;
+    width: 5em;
+    grid-area: color-user;
+}
+
+::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+::-webkit-color-swatch {
+    border: 0;
+    border-radius: 50%;
+    outline: 3px solid var(--clr2);
+}
+
+::-moz-color-swatch,
+::-moz-focus-inner {
+    border: 0;
+}
+
+::-moz-focus-inner {
+    padding: 0;
+}
+
+input[type="range"] {
+    width: 70px;
+    transform: scaley(1.5);
+    grid-area: range;
+}
+
+[name="minus-font-size"] {
+    height: 50px;
+    width: 50px;
+}
+
+.share {
+    grid-area: share;
+    /* margin: 15px 0; */
+    width: 120px;
+}
+
+.download {
+    width: 120px;
+    grid-area: download;
+    /* margin: 15px 0; */
+
+}
+
+select{
+    grid-area: select;
+    width: 8em;
+}
