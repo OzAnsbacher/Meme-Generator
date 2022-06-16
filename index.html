@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme</title>
+    <link rel="stylesheet" href="ccs/mq/mq.css">
+    <link rel="stylesheet" href="ccs/main.css">
     <link rel="stylesheet" href="ccs/main.gallery.css">
-    <link rel="stylesheet" href="ccs/editor-img/main.css">
+    <link rel="stylesheet" href="ccs/editor-img/main.editor.css">
     <link rel="stylesheet" href="ccs/editor-img/btn.css">
     <link rel="stylesheet" href="ccs/header.css">
     <link rel="stylesheet" href="ccs/helper.css">
@@ -15,11 +17,14 @@
     <link rel="stylesheet" href="ccs/setup/vars.css">
 </head>
 
+
 <body onload="onInit()">
     <div class="body-conteiner">
         <header>
             <div class="header-conteiner flex align-center space-between">
                 <h1>LOGO</h1>
+                <input type="search" class="search-key" id=""  oninput="onFilterImgs(this.value)" placeholder="Search"></input>
+                <!-- <input type="search" class="search-key" id="" value="${gLetFilter}" oninput="onFilterImgs(this.value)" placeholder="Search"></input> -->
                 <div class="btn-header flex">
                     <button class="btn-header btn-push none-dacoration"
                         onclick="renderGallery()">Gallery</button>
@@ -35,8 +40,9 @@
         </main>
     </div>
    
-    <script src="js/controller-mame.js"></script>
-    <script src="js/servise/mame.js"></script>
+
+    <script src="js/controller-memes.js"></script>
+    <script src="js/servise/servise.memes.js"></script>
     <script src="js/servise/storage.js"></script>
     <script src="js/utils.js"></script>
 </body>

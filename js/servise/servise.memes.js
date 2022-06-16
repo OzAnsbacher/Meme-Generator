@@ -2,12 +2,14 @@
 
 //to fix switch line btn
 
-var gImgsSave=[]
 const KEY = 'memes'
+const gKeywords = ['funny', 'bad', 'nice', 'good', 'animal', 'big', 'old', 'clever']
+
+var gLetFilter = ''
+var gImgsSave = []
 var gFont
 var gNumImgs = 24
 var gImgs = []
-const gKeywords = ['funny', 'bad', 'nice', 'good']
 var gMeme = {
     selectedImgId: 1, selectLineIdx: 0,
     line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '', stoke: '' }]
@@ -32,7 +34,8 @@ const memesSentences = [
 
 function creatImgs() {
     for (let i = 1; i <= gNumImgs; i++) {
-        const keywords = gKeywords[getRandomInt(0, gKeywords.length)]
+        let keywords = gKeywords[getRandomInt(0, gKeywords.length)]
+        keywords += gKeywords[getRandomInt(0, gKeywords.length)]
         gImgs.push(creatImg(i, keywords))
     }
     saveCurImg(0)
@@ -71,7 +74,7 @@ function getNewLine(isRandom) {
         txt = memesSentences[getRandomInt(0, memesSentences.length)]
         size = getRandomInt(20, 51)
         color = getRandomColor()
-        stoke = chackIsDarkColor(color)
+        stoke = checkDarkColor(color)
         isRandom = false
     }
     return {
@@ -92,10 +95,10 @@ function getStyle() {
     }
 }
 
-function changeFontSize(size){
-    if(gMeme.line[gMeme.selectLineIdx].size>46)return
-    if(gMeme.line[gMeme.selectLineIdx].size<20)return
-    gMeme.line[gMeme.selectLineIdx].size+=size
+function changeFontSize(size) {
+    if (gMeme.line[gMeme.selectLineIdx].size > 46) return
+    if (gMeme.line[gMeme.selectLineIdx].size < 20) return
+    gMeme.line[gMeme.selectLineIdx].size += size
 }
 
 function _saveToStorage() {
@@ -162,6 +165,14 @@ function changeLineIdx(lineIdx) {
     gMeme.selectLineIdx = lineIdx
 }
 
+function getFilterImgs(val) {
+    gLetFilter = val
+}
+
+function setFilterImgs() {
+    return gImgs.filter(img => img.keywords.includes(gLetFilter))
+}
+
 function getImgs() {
-    return gImgs
+    return setFilterImgs()
 }

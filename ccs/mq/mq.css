@@ -1,0 +1,183 @@
+/* MOBIL */
+@media (max-width:850px) {
+
+    .grid-conteiner-gallery {
+        grid-template-columns: repeat(2, 200px);
+        gap: 12px;
+        column-gap: 20px;
+    }
+
+    .img-gallery {
+        height: 150px;
+        width: 180px;
+    }
+
+    .meme-conteiner {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+    section {
+        margin: auto;
+
+    }
+
+    canvas {
+        width: 400px;
+    }
+
+    .grid-conteiner-editor {
+        display: grid;
+        grid-template-columns: 25%, 25%, 25%, 25%;
+        grid-template-areas:
+            "txt txt txt txt "
+            "random pen switch delete"
+            "ltr plus minus rtl"
+            "share range select download"
+            "color-user color-user save save";
+
+
+        /* max-width: 650px; */
+        margin: auto;
+        /* padding: 1em; */
+        /* margin: 57px; */
+
+    }
+
+    .txt-meme {
+        width: 30em;
+    }
+
+    .search-key {
+        display: none;
+    }
+}
+
+
+/* MEDIOM */
+
+
+@media (min-width:850px) {
+    @media (max-width:1100px) {
+        html {
+            font-size: 10px;
+        }
+
+        header {
+            max-width: 860px;
+        }
+
+        .header-conteiner {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        button.btn-header {
+            margin-right: 10px;
+        }
+
+        .body-conteiner {
+            max-width: 860px;
+        }
+
+        main {
+            max-width: 860px;
+        }
+
+        .grid-conteiner-gallery {
+            grid-template-columns: repeat(3, 200px);
+             gap: 12px; 
+            column-gap: 20px; 
+        }
+
+        .img-gallery {
+            height: 150px;
+            width: 180px;
+        }
+
+        .grid-conteiner-editor {
+            display: grid;
+            grid-template-columns: 4em, 4em;
+            grid-template-areas:
+                "txt txt "
+                "pen switch"
+                "random delete"
+                "ltr rtl"
+                "plus minus"
+                "share download"
+                "range select"
+                "color-user save";
+
+            gap: 0.3em;
+            width: 31%;
+            padding: 1em;
+            margin: 27px;
+        }
+
+        .txt-meme {
+            width: 15em;
+        }
+    }
+}
+
+/* DESKTOP */
+
+@media(min-width:1100px) {
+
+    header {
+        max-width: 1250px;
+    }
+
+    .header-conteiner {
+        max-width: 1190px;
+        margin: 20px auto;
+    }
+
+    button.btn-header {
+        margin-right: 1.3em;
+    }
+
+    .body-conteiner {
+        max-width: 1250px;
+    }
+
+    main {
+        max-width: 1250px;
+    }
+
+    .grid-conteiner-gallery {
+        grid-template-columns: repeat(5, 200px);
+        gap: 0.8em;
+        column-gap: 1.25em;
+    }
+
+    .img-gallery {
+        height: 173px;
+        width: 200px;
+    }
+
+    .canvas-container {
+        padding: 0.75em;
+        margin: 0.62em;
+    }
+
+    .grid-conteiner-editor {
+        display: grid;
+        grid-template-columns: 25%, 25%, 25%, 25%;
+        grid-template-areas:
+            "txt txt txt txt "
+            "random pen switch delete"
+            "ltr plus minus rtl"
+            "share range select download"
+            "color-user color-user save save";
+
+
+        width: 45%;
+        /* padding: 1em; */
+        margin: 57px;
+    }
+
+    .txt-meme {
+        width: 30em;
+    }
+}

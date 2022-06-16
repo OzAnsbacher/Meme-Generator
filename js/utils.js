@@ -14,25 +14,25 @@ function getRandomColor() {
     return color;
 }
 function getRandomLightColor() {
-    var letters = 'BCDEF';
+    var letters = 'DEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 5)];
+        color += letters[Math.floor(Math.random() * 3)];
     }
     return color;
 }
 function getRandomDarkColor() {
-    var letters = '01234';
+    var letters = '012';
     var color = '#';
     for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 5)];
+        color += letters[Math.floor(Math.random() * 3)];
     }
     return color;
 }
 
 
 //function check if the color (on fill) is dark or light and send to correct function 
-function chackIsDarkColor(color) {
+function checkDarkColor(color) {
     const letters = '0123456789ABCDEF'
     let sum = 0
     color = color.split('')

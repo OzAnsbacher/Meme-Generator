@@ -1,12 +1,13 @@
 'use strict'
 
+
 var gCanvas
 var gCtx
 
 
 function onInit() {
     gImgs = []
-    gImgsSave=[]
+    gImgsSave = []
     creatImgs()
     gFont = 'Impact'
     // firstRenderMeme()
@@ -31,7 +32,7 @@ function renderGallery() {
             onclick="onImgSelect(${img.id - 1})" alt="img">`)
 
     strHTML.unshift(`<div class="gallery-conteiner" >
-            <input type="search" name="" class="search-key" id="" placeholder="Search"></input>
+           
             <section class="grid-conteiner-gallery">`)
     strHTML.push(`</section></div>`)
     var elGallery = document.querySelector('.main-conteiner')
@@ -56,7 +57,7 @@ function firstRenderMeme() {
         <img src="icon/pen.png" class="icon pen" onclick="onAddLine(event)" alt="">
         <img src="icon/color.png" class="icon" name="random-color" alt="">
         <img src="icon/switch.png" class="icon switch" onclick="onSwitchLine()" alt="">
-        <img src="icon/delete.png" class="icon delete" name="delete-text" alt="">
+        <img src="icon/delete.png" class="icon delete"  onclick="renderGallery()" name="delete-text" alt="">
         <button class="share">Share</button>
         <input type="range" id="" value="30" min="20" max="50" onchange="this.title=this.value ,onChangeSize(this.value)">
         <select onchange="onGetFont(this.value)" name="" id="">
@@ -70,7 +71,7 @@ function firstRenderMeme() {
         <img src="icon/reduce2.png" class="icon minus" onclick="onChangeFontSize(-3)" name="minus-font-size" alt="">
         <img src="icon/ltr.png" class="icon" name="ltr" alt="">
         <img src="icon/ltr.png" class="icon" name="rtl" alt="">
-        <img src="icon/save.png" class="save" onclick="onSaveToStorage()" alt="">
+        <img src="icon/save.png" class="icon save" onclick="onSaveToStorage()" alt="">
         <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
     </section>
 </div>`
@@ -133,6 +134,11 @@ function renderSaveImg() {
     changeHeaderBtn('Save')
 }
 
+function onFilterImgs(val) {
+    getFilterImgs(val)
+    renderGallery()
+}
+
 function onDrawText(txt) {
     const msg = setLineTxt(txt)
     if (msg) console.log(msg);
@@ -144,7 +150,7 @@ function onImgSelect(idx = getRandomInt(0, gImgs.length), isRandom = false) {
     firstRenderMeme()
 }
 
-function onChangeFontSize(size){
+function onChangeFontSize(size) {
     changeFontSize(size)
     renderMeme()
 }
@@ -167,7 +173,7 @@ function onSwitchLine() {
 function onGetFont(font) {
     console.log(font);
     getFont(font)
-    // renderMeme()
+    renderMeme()
 }
 
 function onSaveToStorage() {

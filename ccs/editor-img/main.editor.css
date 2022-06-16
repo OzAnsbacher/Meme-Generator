@@ -1,0 +1,28 @@
+.meme-conteiner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* CANVAS */
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 35px;
+}
+
+.canvas-container {
+    border-radius: 35px;
+    background-color: var(--clr4);
+}
+
+/* EDITOR */
+
+.grid-conteiner-editor {
+    justify-items: center;
+    background-color: var(--clr4);
+    background-color: var(--clr4);
+    border-radius: 35px;
+    align-items: baseline;
+}
