@@ -1,5 +1,7 @@
 'use strict'
 
+//to fix switch line btn
+
 var gNumImgs = 24
 var gImgs = []
 const gKeywords = ['funny', 'bad', 'nice', 'good']
@@ -45,22 +47,44 @@ function getMeme() {
     return gImgs[gMeme.selectedImgId]
 }
 
-function saveCurImg(idx) {
+function saveCurImg(idx, isRandom) {
+    gMeme.line = []
+    gMeme.line[0] = getNewLine(isRandom)
+    if (isRandom) {
+        for (let i = getRandomInt(0, 3); i > 0; i--) {
+            gMeme.line[i] = getNewLine(isRandom)
+        }
+    }
     gMeme.selectedImgId = idx
     gMeme.selectLineIdx = 1
-    gMeme.line[0] = getNewLine()
-    // gMeme.line[0].txt = memesSentences[getRandomInt(0, memesSentences.length)]
-    // gMeme.line[0].size = 30
-    // gMeme.line[0].color = 'white'
-    // gMeme.line[0].aline = 'left'
+    console.log(gMeme);
 }
 
-function getNewLine() {
+function getNewLine(isRandom) {
+    let txt = 'What is your smart sentence?'
+    let size = 30
+    let color = getRandomColor()
+    if (isRandom) {
+        txt = memesSentences[getRandomInt(0, memesSentences.length)]
+        size = getRandomInt(20, 51)
+        color = getRandomColor()
+    }
     return {
-        txt: memesSentences[getRandomInt(0, memesSentences.length)],
-        size: 30,
+        txt: txt,
+        size,
         aline: 'left',
-        color: 'white'
+        color
+    }
+}
+
+function getStyle() {
+    const memeStyle = getStyleServise()
+    const color = chackIsDarkColor(memeStyle.color)
+    return {
+        font: `${memeStyle.size}px Impact`,
+        fill: memeStyle.color,
+        stoke: color,
+        bold: 3
     }
 }
 
@@ -82,12 +106,17 @@ function addLine() {
 }
 
 function switchLine() {
-        gMeme.selectLineIdx++
-        if(gMeme.selectLineIdx>3) gMeme.selectLineIdx=1
+    gMeme.selectLineIdx++
+    if(gMeme.selectLineIdx++>gMeme.line.length)gMeme.selectLineIdx=1
+
+    // if (gMeme.line.length !== gMeme.selectLineIdx) gMeme.selectLineIdx++
+    // else if (gMeme.line.length === gMeme.selectLineIdx) gMeme.selectLineIdx=1
+    // if (gMeme.selectLineIdx > 3) gMeme.selectLineIdx = 1
 }
 
-function setLineTxt(txt) {
-    gMeme.line[gMeme.selectLineIdx - 1].txt = txt
+function setLineTxt(text) {
+    console.log(text);
+    gMeme.line[gMeme.selectLineIdx].txt = text
 }
 
 function getLineTxt() {
@@ -95,11 +124,15 @@ function getLineTxt() {
 }
 
 function getStyleServise() {
-    return gMeme.line[0]
+    return gMeme.line[gMeme.selectLineIdx]
 }
 
 function getLineIdx() {
     return gMeme.selectLineIdx
+}
+
+function changeLineIdx(lineIdx) {
+    gMeme.selectLineIdx = lineIdx
 }
 
 function getImgs() {
