@@ -2,6 +2,7 @@
 
 //to fix switch line btn
 
+var gImgsSave=[]
 const KEY = 'memes'
 var gFont
 var gNumImgs = 24
@@ -91,7 +92,14 @@ function getStyle() {
     }
 }
 
+function changeFontSize(size){
+    if(gMeme.line[gMeme.selectLineIdx].size>46)return
+    if(gMeme.line[gMeme.selectLineIdx].size<20)return
+    gMeme.line[gMeme.selectLineIdx].size+=size
+}
+
 function _saveToStorage() {
+    gImgsSave.push(gMeme.selectedImgId)
     var img = gCanvas.toDataURL('image/jpeg')
     img += _loadFromStorage()
     saveToStorage(KEY, img)

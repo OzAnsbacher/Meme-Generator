@@ -6,6 +6,7 @@ var gCtx
 
 function onInit() {
     gImgs = []
+    gImgsSave=[]
     creatImgs()
     gFont = 'Impact'
     // firstRenderMeme()
@@ -65,8 +66,8 @@ function firstRenderMeme() {
         <option value="FascinateInline">FascinateInline</option>
         </select>
         <button class="download">Download</button>
-        <img src="icon/plus.png" class="icon plus" name="plus-font-size" alt="">
-        <img src="icon/reduce2.png" class="icon minus" name="minus-font-size" alt="">
+        <img src="icon/plus.png" class="icon plus" onclick="onChangeFontSize(3)" name="plus-font-size" alt="">
+        <img src="icon/reduce2.png" class="icon minus" onclick="onChangeFontSize(-3)" name="minus-font-size" alt="">
         <img src="icon/ltr.png" class="icon" name="ltr" alt="">
         <img src="icon/ltr.png" class="icon" name="rtl" alt="">
         <img src="icon/save.png" class="save" onclick="onSaveToStorage()" alt="">
@@ -100,7 +101,7 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
         memLines.forEach((line, id) => {
             if (id === 0) {
                 // changeLineIdx(id)
-                drawText(line.txt, 40, 40)
+                drawText(line.txt, 40, 50)
             }
             if (id === 1) {
                 // changeLineIdx(id)
@@ -119,7 +120,8 @@ function renderSaveImg() {
     imgs = imgs.split('data')
     let strHTML = imgs.map((img, id) => {
         if (!id) return
-        return `<img src="data${img}" class="img-gallery"/>`
+        return `<img src="data${img}" class="img-gallery"
+                onclick="onImgSelect(${gImgsSave[id]})"/>`
     })
     strHTML.unshift(`<div class="gallery-conteiner" >
             <input type="search" name="" class="search-key" id="" placeholder="Search"></input>
@@ -140,6 +142,11 @@ function onDrawText(txt) {
 function onImgSelect(idx = getRandomInt(0, gImgs.length), isRandom = false) {
     saveCurImg(idx, isRandom)
     firstRenderMeme()
+}
+
+function onChangeFontSize(size){
+    changeFontSize(size)
+    renderMeme()
 }
 
 function onChangeColor(color) {
