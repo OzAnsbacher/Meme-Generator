@@ -8,7 +8,7 @@ var gImgs = []
 const gKeywords = ['funny', 'bad', 'nice', 'good']
 var gMeme = {
     selectedImgId: 1, selectLineIdx: 0,
-    line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '' }]
+    line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '', stoke: '' }]
 }
 const memesSentences = [
     'I never eat falafel',
@@ -17,15 +17,15 @@ const memesSentences = [
     'Armed in knowledge',
     'Js error "Unexpected String"',
     'One does not simply write js',
-    'I`m a simple man i see vanilla JS, i click like!',
-    'JS, HTML,CSS?? Even my momma can do that',
+    // 'I`m a simple man i see vanilla JS, i click like!',
+    // 'JS, HTML,CSS?? Even my momma can do that',
     'May the force be with you',
     'I know JS',
-    'JS Where everything is made up and the rules dont matter',
-    'Not sure if im good at programming or good at googling',
+    // 'JS Where everything is made up and the rules dont matter',
+    // 'Not sure if im good at programming or good at googling',
     'But if we could',
     'JS what is this?',
-    'Write hello world , add to cv 7 years experienced',
+    // 'Write hello world , add to cv 7 years experienced',
 ]
 
 function creatImgs() {
@@ -63,11 +63,14 @@ function saveCurImg(idx, isRandom) {
 function getNewLine(isRandom) {
     let txt = 'What is your smart sentence?'
     let size = 30
-    let color = getRandomColor()
+    let color = '#ffffff'
+    let stoke = '#000000'
     if (isRandom) {
         txt = memesSentences[getRandomInt(0, memesSentences.length)]
         size = getRandomInt(20, 51)
         color = getRandomColor()
+        stoke = chackIsDarkColor(color)
+        isRandom=false
     }
     return {
         txt: txt,
@@ -79,17 +82,15 @@ function getNewLine(isRandom) {
 
 function getStyle() {
     const memeStyle = getStyleServise()
-    const color = chackIsDarkColor(memeStyle.color)
     return {
         font: `${memeStyle.size}px ${setFont()}`,
         fill: memeStyle.color,
-        stoke: color,
+        stoke: memeStyle.stoke,
         bold: 3
     }
 }
 
 function getFont(font) {
-    console.log(111);
     gFont = font
 }
 
@@ -117,15 +118,13 @@ function addLine() {
 function switchLine() {
     gMeme.selectLineIdx++
     if (gMeme.selectLineIdx >= gMeme.line.length) gMeme.selectLineIdx = 0
-
-    // if (gMeme.line.length !== gMeme.selectLineIdx) gMeme.selectLineIdx++
-    // else if (gMeme.line.length === gMeme.selectLineIdx) gMeme.selectLineIdx=1
-    // if (gMeme.selectLineIdx > 3) gMeme.selectLineIdx = 1
 }
 
 function setLineTxt(text) {
-    console.log(text);
-    gMeme.line[gMeme.selectLineIdx].txt = text
+    if (gMeme.line[gMeme.selectLineIdx].size * text.lastIndexOf('') < gCanvas.width*1.5) {
+        gMeme.line[gMeme.selectLineIdx].txt = text
+        return ''
+    } else return 'Open new row'
 }
 
 function getLineTxt() {

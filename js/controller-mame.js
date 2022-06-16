@@ -108,10 +108,10 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
             }
             if (id === 1) {
                 // changeLineIdx(id)
-                drawText(line.txt, 50, gCanvas.height - 50)
+                drawText(line.txt, 40, gCanvas.height - 50)
             }
             if (id === 2) {
-                drawText(line.txt, 50, gCanvas.height - 150)
+                drawText(line.txt, 40, gCanvas.height - 150)
             }
             // changeLineIdx(id)
         })
@@ -120,7 +120,8 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
 }
 
 function onDrawText(txt) {
-    setLineTxt(txt)
+   const msg= setLineTxt(txt)
+   if (msg) console.log(msg);
     renderMeme()
 }
 
@@ -140,6 +141,7 @@ function onChangeSize(size) {
 }
 
 function onSwitchLine() {
+    clearInput()
     switchLine()
 }
 
@@ -150,12 +152,17 @@ function onGetFont(font) {
 }
 
 function onAddLine() {
+    clearInput()
     const msg = addLine()
     if (msg) {
         console.log(msg)
         return
     }
     renderMeme()
+}
+
+function clearInput(selector='.txt-meme'){
+document.querySelector(`${selector}`).value=''
 }
 
 function drawText(text, x, y) {
