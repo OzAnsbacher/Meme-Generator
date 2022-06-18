@@ -5,6 +5,7 @@
 const KEY = 'memes'
 const gKeywords = ['funny', 'bad', 'nice', 'good', 'animal', 'big', 'old', 'clever']
 
+var gKeywordsObj = {}
 var gLetFilter = ''
 var gImgsSave = []
 var gFont
@@ -35,7 +36,7 @@ const memesSentences = [
 function creatImgs() {
     for (let i = 1; i <= gNumImgs; i++) {
         let keywords = gKeywords[getRandomInt(0, gKeywords.length)]
-        keywords += gKeywords[getRandomInt(0, gKeywords.length)]
+        keywords += ' ' + gKeywords[getRandomInt(0, gKeywords.length)]
         gImgs.push(creatImg(i, keywords))
     }
     saveCurImg(0)
@@ -47,6 +48,25 @@ function creatImg(id, argument) {
         url: `img/img${id}.jpg`,
         keywords: argument
     }
+}
+
+function rateKeywords() {
+    gImgs.forEach(img => {
+        let key = img.keywords.split(' ')
+        for (let i = 0; i < key.length; i++) {
+            if (!gKeywordsObj[key[i]]) gKeywordsObj[key[i]] = 0
+            gKeywordsObj[key[i]] += 1
+        }
+    })
+    // return gKeywordsObj
+}
+
+function getKeywords() {
+    return gKeywordsObj
+}
+
+function updateKeyWords(key) {
+    gKeywordsObj[key] += 1
 }
 
 function getMeme() {

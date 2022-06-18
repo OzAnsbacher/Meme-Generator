@@ -8,9 +8,11 @@ var gCtx
 function onInit() {
     gImgs = []
     gImgsSave = []
+    gKeywordsObj={}
     creatImgs()
     gFont = 'Impact'
     // firstRenderMeme()
+    rateKeywords()
     renderGallery()
 }
 
@@ -31,13 +33,27 @@ function renderGallery() {
         `<img src="${img.url}" class="img-gallery"
             onclick="onImgSelect(${img.id - 1})" alt="img">`)
 
-    strHTML.unshift(`<div class="gallery-conteiner" >
-           
-            <section class="grid-conteiner-gallery">`)
+    strHTML.unshift(`<div class="gallery-conteiner" >${getStrKeywords()}
+                     <section class="grid-conteiner-gallery">`)
     strHTML.push(`</section></div>`)
     var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML.join('')
     changeHeaderBtn('Gallery')
+}
+
+function getStrKeywords() {
+    let keywords = getKeywords()
+    let strHTML = ''
+    console.log(keywords);
+    for (const keyword in keywords) {
+        strHTML += `<button class="keywords" name="${keyword}" style="font-size:${keywords[keyword] * 4}px" onclick="onClickKeyWords(this.name)">${keyword}</button>`
+    }
+    return strHTML
+}
+
+function onClickKeyWords(key) {
+    updateKeyWords(key)
+    renderGallery()
 }
 
 
@@ -71,10 +87,10 @@ function firstRenderMeme() {
         <img src="icon/plus.png" class="icon plus" onclick="onChangeFontSize(3)" name="plus-font-size" alt="">
         <img src="icon/reduce2.png" class="icon minus" onclick="onChangeFontSize(-3)" name="minus-font-size" alt="">
         <input type="color" value="#ffffff" id="color-line" onchange="onChangeColor(this.value)">
-        <button  class="icon imj1" onclick="onAddIcon('🤬')">🤬</button>
-        <button class="icon imj2" onclick="onAddIcon('😎')">😎</button>
-        <button class="icon imj3" onclick="onAddIcon('🐰')">🐰</button>
-        <button class="icon imj4" onclick="onAddIcon('🤣')">🤣</button>
+        <button  class="icon imj imj1" onclick="onAddIcon('🤬')">🤬</button>
+        <button class="icon imj imj2" onclick="onAddIcon('😎')">😎</button>
+        <button class="icon imj imj3" onclick="onAddIcon('🐰')">🐰</button>
+        <button class="icon imj imj4" onclick="onAddIcon('🤣')">🤣</button>
     </section>
 </div>`
 
@@ -147,7 +163,7 @@ function onDrawText(txt) {
     renderMeme()
 }
 
-function onAddIcon(icon){
+function onAddIcon(icon) {
     console.log(icon);
     addIcon(icon)
     renderMeme()
@@ -198,7 +214,7 @@ function onAddLine() {
     renderMeme()
 }
 
-function clearInput(selector = '.txt-meme', val='') {
+function clearInput(selector = '.txt-meme', val = '') {
     document.querySelector(`${selector}`).value = val
 }
 
