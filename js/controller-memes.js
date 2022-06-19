@@ -14,6 +14,7 @@ function onInit() {
     // firstRenderMeme()
     rateKeywords()
     renderGallery()
+ 
 }
 
 
@@ -73,7 +74,7 @@ function firstRenderMeme() {
         <img src="icon/pen.png" class="icon pen" onclick="onAddLine(event)" alt="">
         <img src="icon/color.png" class="icon" name="random-color" onclick="onRenderRandomColor()" alt="">
         <img src="icon/switch.png" class="icon switch" onclick="onSwitchLine()" alt="">
-        <img src="icon/delete.png" class="icon delete"  onclick="renderGallery()" name="delete-text" alt="">
+        <img src="icon/delete.png" class="icon delete" onclick="onClearStorage()" name="delete-text" alt="">
         <button class="share" onclick="uploadImg()">Share</button>
         <input type="range" id="" value="30" min="20" max="45" onchange="this.title=this.value ,onChangeSize(this.value)">
         <select onchange="onGetFont(this.value)" name="" id="">
@@ -94,16 +95,17 @@ function firstRenderMeme() {
         <button class="icon imj imj4" onclick="onAddIcon('🤣')">🤣</button>
     </section>
 </div>`
-    var elGallery = document.querySelector('.main-conteiner')
-    elGallery.innerHTML = strHTML
+
+    //todo:change variable  
+    var elEditor = document.querySelector('.main-conteiner')
+    elEditor.innerHTML = strHTML
     gCanvas = document.querySelector('.canvas-style')
     gCtx = gCanvas.getContext('2d')
-
+    addListeners()
     const img = getMeme()
     drawImgFromlocal(img.url)
 }
 
-{/* <button class="download">Download</button> */ }
 function renderMeme() {
     const img = getMeme()
     drawImgFromlocal(img.url)
@@ -114,7 +116,7 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
     // debugger
     var img = new Image()
     img.src = imgSrc
-    resizeCanvas()
+    // resizeCanvas()
     gCanvas = document.querySelector('.canvas-style')
     gCtx = gCanvas.getContext('2d')
     gCanvas.height = (img.height * gCanvas.width) / img.width
@@ -123,22 +125,9 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
         const memLines = getLineTxt()
         let lineIdx = getLineIdx()
         memLines.forEach((line, id) => {
-            console.log(line.txt);
             let text = line.txt
-            console.log(text);
             if (id === lineIdx) text = `- ${line.txt}  -`
-            console.log(text);
-            if (id === 0) {
-                // changeLineIdx(id)
-                drawText(text, 40, 50, id)
-            }
-            if (id === 1) {
-                // changeLineIdx(id)
-                drawText(text, 40, gCanvas.height - 50, id)
-            }
-            if (id === 2) {
-                drawText(text, 40, gCanvas.height - 150, id)
-            }
+            drawText(text, line.pos.x, line.pos.y, id)
         })
 
     }
@@ -213,6 +202,10 @@ function onGetFont(font) {
 
 function onSaveToStorage() {
     _saveToStorage()
+}
+
+function onClearStorage(){
+    clearStorage()
 }
 
 function onAddLine() {

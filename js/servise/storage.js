@@ -11,3 +11,7 @@ function loadFromStorage(key) {
   // return str
   return JSON.parse(str)
 }
+
+function clearStorage(){
+  localStorage.clear()
+}

@@ -13,6 +13,7 @@ var gNumImgs = 24
 var gImgs = []
 var gMeme = {
     selectedImgId: 1, selectLineIdx: 0,
+    //todo: pos: x, y
     line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '', stoke: '' }]
 }
 const memesSentences = [
@@ -70,22 +71,23 @@ function updateKeyWords(key) {
 }
 
 function getMeme() {
+    // console.log(gMeme);
     return gImgs[gMeme.selectedImgId]
 }
 
 function saveCurImg(idx, isRandom) {
     gMeme.line = []
-    gMeme.line[0] = getNewLine(isRandom)
+    gMeme.line[0] = getNewLine(isRandom, 0)
     if (isRandom) {
         for (let i = getRandomInt(0, 3); i > 0; i--) {
-            gMeme.line[i] = getNewLine(isRandom)
+            gMeme.line[i] = getNewLine(isRandom, i)
         }
     }
     gMeme.selectedImgId = idx
     gMeme.selectLineIdx = 0
 }
 
-function getNewLine(isRandom) {
+function getNewLine(isRandom, numLine = 1 + gMeme.selectLineIdx) {
     let txt = 'What is your smart sentence?'
     let size = 30
     let color = '#ffffff'
@@ -97,11 +99,13 @@ function getNewLine(isRandom) {
         stoke = checkDarkColor(color)
         isRandom = false
     }
+
     return {
         txt: txt,
         size,
         aline: 'left',
-        color
+        color,
+        pos: { x: 50, y: numLine * 100 + 50 }
     }
 }
 
@@ -127,6 +131,7 @@ function changeFontSize(size) {
 
 function _saveToStorage() {
     gImgsSave.push(gMeme.selectedImgId)
+    console.log(gImgsSave);
     var img = gCanvas.toDataURL('image/jpeg')
     img += _loadFromStorage()
     saveToStorage(KEY, img)
@@ -181,6 +186,7 @@ function addIcon(icon) {
     // }
 }
 
+//todo: lines
 function getLineTxt() {
     return gMeme.line
 }
