@@ -1,29 +1,7 @@
+
 var gLine
-// var gCanvas
-// var gCtx
 var gStartPos
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
-
-// function onInit() {
-// gCanvas = document.querySelector('canvas')
-// gCtx = gCanvas.getContext('2d')
-
-// resizeCanvas()
-//Calc the center of the canvas
-// const center = { x: gCanvas.width / 2, y: gCanvas.height / 2 }
-//Create the circle in the center
-// createCircle(center)
-
-// renderCanvas()
-// }
-
-// function renderCanvas() {
-//Set the backgournd color to grey 
-// gCtx.fillStyle = "#ede5ff"
-// //Clear the canvas,  fill it with grey background
-// gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height)
-// renderCircle()
-// }
 
 function renderCircle() {
     //Get the props we need from the circle 
@@ -85,8 +63,7 @@ function onMove(ev) {
 }
 
 function onUp() {
-    gLine=''
-    // getLineMove(false)
+    gLine = ''
     document.body.style.cursor = 'grab'
 }
 
@@ -97,7 +74,6 @@ function resizeCanvas() {
 }
 
 function getEvPos(ev) {
-
     //Gets the offset pos , the default pos
     var pos = {
         x: ev.offsetX,
@@ -118,25 +94,6 @@ function getEvPos(ev) {
     return pos
 }
 
-// function drawArc(x, y, size = 60, color = 'blue') {
-//     gCtx.beginPath()
-//     gCtx.lineWidth = '6'
-//     gCtx.arc(x, y, size, 0, 2 * Math.PI)
-//     gCtx.strokeStyle = 'white'
-//     gCtx.stroke()
-//     gCtx.fillStyle = color
-//     gCtx.fill()
-// }
-
-
-// function createCircle(pos) {
-//     gCircle = {
-//         pos,
-//         size: 60,
-//         color: 'blue',
-//         isDrag: false
-//     }
-// }
 
 function getLine() {
     return gLine
@@ -156,7 +113,7 @@ function idxLineClicked(clickedPos) {
 
 
 function getLineMove(idx) {
-    gLine= gMeme.line[idx]
+    gLine = gMeme.line[idx]
 }
 
 //Move the circle in a delta, diff from the pervious pos

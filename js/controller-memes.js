@@ -11,10 +11,9 @@ function onInit() {
     gKeywordsObj = {}
     creatImgs()
     gFont = 'Impact'
-    // firstRenderMeme()
     rateKeywords()
     renderGallery()
- 
+
 }
 
 
@@ -96,7 +95,6 @@ function firstRenderMeme() {
     </section>
 </div>`
 
-    //todo:change variable  
     var elEditor = document.querySelector('.main-conteiner')
     elEditor.innerHTML = strHTML
     gCanvas = document.querySelector('.canvas-style')
@@ -113,10 +111,8 @@ function renderMeme() {
 
 
 function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
-    // debugger
     var img = new Image()
     img.src = imgSrc
-    // resizeCanvas()
     gCanvas = document.querySelector('.canvas-style')
     gCtx = gCanvas.getContext('2d')
     gCanvas.height = (img.height * gCanvas.width) / img.width
@@ -126,10 +122,9 @@ function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
         let lineIdx = getLineIdx()
         memLines.forEach((line, id) => {
             let text = line.txt
-            if (id === lineIdx) text = `- ${line.txt}  -`
+            if (id === lineIdx) drawRect(20, line.pos.y - line.size, 450, line.pos.x)
             drawText(text, line.pos.x, line.pos.y, id)
         })
-
     }
 }
 
@@ -147,9 +142,10 @@ function renderSaveImg() {
     strHTML.push(`</section></div>`)
     var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML
-    console.log(imgs);
     changeHeaderBtn('Save')
 }
+
+
 
 function onFilterImgs(val) {
     getFilterImgs(val)
@@ -204,7 +200,7 @@ function onSaveToStorage() {
     _saveToStorage()
 }
 
-function onClearStorage(){
+function onClearStorage() {
     clearStorage()
 }
 
@@ -241,6 +237,13 @@ function drawText(text, x, y, id) {
     gCtx.font = txtStyle.font
     gCtx.fillText(text, x, y);//Draws (fills) a given text at the given (x, y) position.
     gCtx.strokeText(text, x, y);//Draws (strokes) a given text at the given (x, y) position.
+}
+
+function drawRect(x, y, xend, yend) {
+    gCtx.beginPath();
+    gCtx.rect(x, y, xend, yend);
+    gCtx.strokeStyle = 'white';
+    gCtx.stroke();
 }
 
 function resizeCanvas() {

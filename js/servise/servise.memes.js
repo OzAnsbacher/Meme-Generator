@@ -1,7 +1,5 @@
 'use strict'
 
-//to fix switch line btn
-
 const KEY = 'memes'
 const gKeywords = ['funny', 'bad', 'nice', 'good', 'animal', 'big', 'old', 'clever']
 
@@ -13,7 +11,6 @@ var gNumImgs = 24
 var gImgs = []
 var gMeme = {
     selectedImgId: 1, selectLineIdx: 0,
-    //todo: pos: x, y
     line: [{ txt: 'boom!!', size: 30, aline: 'left', color: '', stoke: '' }]
 }
 const memesSentences = [
@@ -23,15 +20,9 @@ const memesSentences = [
     'Armed in knowledge',
     'Js error "Unexpected String"',
     'One does not simply write js',
-    // 'I`m a simple man i see vanilla JS, i click like!',
-    // 'JS, HTML,CSS?? Even my momma can do that',
     'May the force be with you',
     'I know JS',
-    // 'JS Where everything is made up and the rules dont matter',
-    // 'Not sure if im good at programming or good at googling',
     'But if we could',
-    'JS what is this?',
-    // 'Write hello world , add to cv 7 years experienced',
 ]
 
 function creatImgs() {
@@ -59,7 +50,6 @@ function rateKeywords() {
             gKeywordsObj[key[i]] += 1
         }
     })
-    // return gKeywordsObj
 }
 
 function getKeywords() {
@@ -71,7 +61,6 @@ function updateKeyWords(key) {
 }
 
 function getMeme() {
-    // console.log(gMeme);
     return gImgs[gMeme.selectedImgId]
 }
 
@@ -180,13 +169,10 @@ function setLineTxt(text) {
 }
 
 function addIcon(icon) {
-    // if (gMeme.line[gMeme.selectLineIdx].size * gMeme.line[gMeme.selectLineIdx].txt.lastIndexOf('') < gCanvas.width * 1.5) {
     gMeme.line[gMeme.selectLineIdx].txt += icon
     clearInput(undefined, gMeme.line[gMeme.selectLineIdx].txt)
-    // }
 }
 
-//todo: lines
 function getLineTxt() {
     return gMeme.line
 }
