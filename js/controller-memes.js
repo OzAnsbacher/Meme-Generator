@@ -8,7 +8,7 @@ var gCtx
 function onInit() {
     gImgs = []
     gImgsSave = []
-    gKeywordsObj={}
+    gKeywordsObj = {}
     creatImgs()
     gFont = 'Impact'
     // firstRenderMeme()
@@ -71,10 +71,10 @@ function firstRenderMeme() {
     <section class="editor-conteiner grid-conteiner-editor">
         <input type="text" name="txt" class="txt-meme" oninput="onDrawText(this.value)">
         <img src="icon/pen.png" class="icon pen" onclick="onAddLine(event)" alt="">
-        <img src="icon/color.png" class="icon" name="random-color" alt="">
+        <img src="icon/color.png" class="icon" name="random-color" onclick="onRenderRandomColor()" alt="">
         <img src="icon/switch.png" class="icon switch" onclick="onSwitchLine()" alt="">
         <img src="icon/delete.png" class="icon delete"  onclick="renderGallery()" name="delete-text" alt="">
-        <button class="share">Share</button>
+        <button class="share" onclick="uploadImg()">Share</button>
         <input type="range" id="" value="30" min="20" max="45" onchange="this.title=this.value ,onChangeSize(this.value)">
         <select onchange="onGetFont(this.value)" name="" id="">
         <option value="Impact" >Impact</option>
@@ -82,7 +82,8 @@ function firstRenderMeme() {
         <option value=" Arial"> Arial</option>
         <option value="FascinateInline">FascinateInline</option>
         </select>
-        <button class="download">Download</button>
+       
+        <a href="#" class="download btn" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
         <img src="icon/save.png" class="icon save" onclick="onSaveToStorage()" alt="">
         <img src="icon/plus.png" class="icon plus" onclick="onChangeFontSize(3)" name="plus-font-size" alt="">
         <img src="icon/reduce2.png" class="icon minus" onclick="onChangeFontSize(-3)" name="minus-font-size" alt="">
@@ -93,7 +94,6 @@ function firstRenderMeme() {
         <button class="icon imj imj4" onclick="onAddIcon('🤣')">🤣</button>
     </section>
 </div>`
-
     var elGallery = document.querySelector('.main-conteiner')
     elGallery.innerHTML = strHTML
     gCanvas = document.querySelector('.canvas-style')
@@ -103,7 +103,7 @@ function firstRenderMeme() {
     drawImgFromlocal(img.url)
 }
 
-
+{/* <button class="download">Download</button> */ }
 function renderMeme() {
     const img = getMeme()
     drawImgFromlocal(img.url)
@@ -111,23 +111,33 @@ function renderMeme() {
 
 
 function drawImgFromlocal(imgSrc = 'img/img1.jpg') {
+    // debugger
     var img = new Image()
     img.src = imgSrc
+    resizeCanvas()
+    gCanvas = document.querySelector('.canvas-style')
+    gCtx = gCanvas.getContext('2d')
     gCanvas.height = (img.height * gCanvas.width) / img.width
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
         const memLines = getLineTxt()
+        let lineIdx = getLineIdx()
         memLines.forEach((line, id) => {
+            console.log(line.txt);
+            let text = line.txt
+            console.log(text);
+            if (id === lineIdx) text = `- ${line.txt}  -`
+            console.log(text);
             if (id === 0) {
                 // changeLineIdx(id)
-                drawText(line.txt, 40, 50)
+                drawText(text, 40, 50, id)
             }
             if (id === 1) {
                 // changeLineIdx(id)
-                drawText(line.txt, 40, gCanvas.height - 50)
+                drawText(text, 40, gCanvas.height - 50, id)
             }
             if (id === 2) {
-                drawText(line.txt, 40, gCanvas.height - 150)
+                drawText(text, 40, gCanvas.height - 150, id)
             }
         })
 
@@ -192,6 +202,7 @@ function onChangeSize(size) {
 function onSwitchLine() {
     clearInput()
     switchLine()
+    renderMeme()
 }
 
 function onGetFont(font) {
@@ -214,13 +225,23 @@ function onAddLine() {
     renderMeme()
 }
 
+function onRenderRandomColor() {
+    randomColor()
+    renderMeme()
+}
+
+function downloadImg(elLink) {
+    var imgContent = gCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+    elLink.href = imgContent
+}
+
 function clearInput(selector = '.txt-meme', val = '') {
     document.querySelector(`${selector}`).value = val
 }
 
-function drawText(text, x, y) {
+function drawText(text, x, y, id) {
     gCtx.beginPath()
-    const txtStyle = getStyle()
+    const txtStyle = getStyle(id)
     gCtx.lineWidth = txtStyle.bold
     gCtx.strokeStyle = txtStyle.stoke
     gCtx.fillStyle = txtStyle.fill
@@ -229,3 +250,8 @@ function drawText(text, x, y) {
     gCtx.strokeText(text, x, y);//Draws (strokes) a given text at the given (x, y) position.
 }
 
+function resizeCanvas() {
+    var elContainer = document.querySelector('.canvas-style')
+    gCanvas.width = elContainer.offsetWidth
+    gCanvas.height = elContainer.offsetHeight
+}

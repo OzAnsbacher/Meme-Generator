@@ -105,13 +105,17 @@ function getNewLine(isRandom) {
     }
 }
 
-function getStyle() {
-    const memeStyle = getStyleServise()
+function randomColor() {
+    gMeme.line[gMeme.selectLineIdx].color = getRandomColor()
+}
+
+function getStyle(id) {
+    const memeStyle = getStyleServise(id)
     return {
         font: `${memeStyle.size}px ${setFont()}`,
         fill: memeStyle.color,
         stoke: memeStyle.stoke,
-        bold: 3
+        bold: 1
     }
 }
 
@@ -169,6 +173,7 @@ function setLineTxt(text) {
         return ''
     } else return 'Open new row'
 }
+
 function addIcon(icon) {
     // if (gMeme.line[gMeme.selectLineIdx].size * gMeme.line[gMeme.selectLineIdx].txt.lastIndexOf('') < gCanvas.width * 1.5) {
     gMeme.line[gMeme.selectLineIdx].txt += icon
@@ -180,8 +185,8 @@ function getLineTxt() {
     return gMeme.line
 }
 
-function getStyleServise() {
-    return gMeme.line[gMeme.selectLineIdx]
+function getStyleServise(id) {
+    return gMeme.line[id]
 }
 
 function getLineIdx() {

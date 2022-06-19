@@ -44,6 +44,10 @@
     border: 0px;
 }
 
+.icon:hover {
+    border: 1px solid var(--clr5);
+}
+
 .imj {
     background: linear-gradient(to right, var(--clr2), var(--clr3));
     border-radius: 10px;
@@ -117,15 +121,34 @@ input[type="range"] {
 .share {
     grid-area: share;
     /* margin: 15px 0; */
-    width: 120px;
+    border: 0;
+    cursor: pointer;
+    font-family: Quicksand-Regular;
 }
 
 .download {
-    width: 120px;
-    grid-area: download;
-    /* margin: 15px 0; */
 
+    grid-area: download;
+    text-decoration: none;
+
+    /* margin: 15px 0; */
 }
+
+.download,
+.share {
+
+    padding: 6px;
+    font-size: 2em;
+    color: var(--clr5);
+    background-color: var(--clr1);
+    border-radius: 5px;
+}
+
+.download:hover,
+.share:hover {
+    outline: 1px solid var(--clr5);
+}
+
 
 select {
     grid-area: select;
